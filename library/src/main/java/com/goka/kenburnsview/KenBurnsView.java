@@ -71,7 +71,6 @@ public class KenBurnsView extends FrameLayout {
 
     private ImageView.ScaleType mScaleType = null;
 
-    private static int sCachedSizeForLoadType;
 
     public KenBurnsView(Context context) {
         this(context, null);
@@ -199,13 +198,15 @@ public class KenBurnsView extends FrameLayout {
         }
 
         if (mLoopViewPager != null) {
-            mPosition++;
 
-            if (mPosition >= getSizeByLoadType()) {
-                mPosition = 0;
-            }
 
             mLoopViewPager.setCurrentItemAfterCancelListener(mPosition, false);
+        }
+
+        mPosition++;
+
+        if (mPosition >= getSizeByLoadType()) {
+            mPosition = 0;
         }
 
         final ImageView activeImageView = mImageViews[mActiveImageIndex];
@@ -309,7 +310,6 @@ public class KenBurnsView extends FrameLayout {
 
     public void loadStrings(List<String> strings) {
         mLoadType = LoadType.String;
-        sCachedSizeForLoadType = 0;
         mStrings = strings;
         if (mRootLayout != null) {
             initImageViews(mRootLayout);
@@ -318,7 +318,6 @@ public class KenBurnsView extends FrameLayout {
 
     public void loadResourceIDs(List<Integer> resourceIDs) {
         mLoadType = LoadType.ResourceID;
-        sCachedSizeForLoadType = 0;
         mResourceIDs = resourceIDs;
         if (mRootLayout != null) {
             initImageViews(mRootLayout);
@@ -327,7 +326,6 @@ public class KenBurnsView extends FrameLayout {
 
     public void loadMixing(List<Object> mixingList) {
         mLoadType = LoadType.MIXING;
-        sCachedSizeForLoadType = 0;
         mMixingList = mixingList;
         if (mRootLayout != null) {
             initImageViews(mRootLayout);
@@ -401,21 +399,20 @@ public class KenBurnsView extends FrameLayout {
     }
 
     private int getSizeByLoadType() {
-        if (sCachedSizeForLoadType > 0) {
-            return sCachedSizeForLoadType;
-        }
+
         switch (mLoadType) {
             case String:
-                sCachedSizeForLoadType = mStrings.size();
-                break;
+                return mStrings.size();
+
             case ResourceID:
-                sCachedSizeForLoadType = mResourceIDs.size();
-                break;
+                return mResourceIDs.size();
+
             case MIXING:
-                sCachedSizeForLoadType = mMixingList.size();
-                break;
+                return mMixingList.size();
+
+            default:
+                return 0;
         }
-        return sCachedSizeForLoadType;
     }
 
     private void loadImage(final int position, final int imageIndex) {
