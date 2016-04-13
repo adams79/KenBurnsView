@@ -45,8 +45,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
 }
 
-def siteUrl = 'https://github.com/gotokatsuya/KenBurnsView'
-def gitUrl = 'https://github.com/gotokatsuya/KenBurnsView.git'
+def siteUrl = 'https://github.com/adams79/KenBurnsView'
+def gitUrl = 'https://github.com/adams79/KenBurnsView.git'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -60,7 +60,7 @@ bintray {
         repo = 'maven'
         name = 'KenBurnsView'
         websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/gotokatsuya/KenBurnsView/issues'
+        issueTrackerUrl = 'https://github.com/adams79/KenBurnsView/issues'
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']
         labels = ['Android']
@@ -89,8 +89,8 @@ install {
                     }
                 }
                 scm {
-                    connection 'https://github.com/gotokatsuya/KenBurnsView.git'
-                    developerConnection 'https://github.com/gotokatsuya/KenBurnsView.git'
+                    connection 'https://github.com/adams79/KenBurnsView.git'
+                    developerConnection 'https://github.com/adams79/KenBurnsView.git'
                     url siteUrl
                 }
             }
