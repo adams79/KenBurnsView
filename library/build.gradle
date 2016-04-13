@@ -15,7 +15,7 @@ repositories {
 }
 
 group = 'com.github.goka.kenburnsview'
-version = '1.0.3'
+version = '1.0.4'
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
@@ -29,7 +29,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 4
-        versionName "1.0.3"
+        versionName "1.0.4"
     }
     buildTypes {
         release {
